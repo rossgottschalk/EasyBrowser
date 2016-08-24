@@ -7,13 +7,34 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
+class ViewController: UIViewController, UITextFieldDelegate
+{
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    @IBOutlet weak var webView: WKWebView!
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // open http://developer.apple.com
+        let url = URL(string: "https://\(textField.text!)")
+        //UIApplication.shared.open(url!)
+        let request = URLRequest(url: url!)
+        webView.load(request)
+        
+        return true
+
+    }
+    
+    @IBAction func openPage(_ sender: UIButton)
+    {
+            }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
